@@ -7,7 +7,7 @@ public class MovieManager {
     private int showMovieLength = 10;
     private int chooseMovieLength;
 
-    public MovieManager(int chooseMovieLength) {
+    public void setChooseMovieLength(int chooseMovieLength) {
         this.chooseMovieLength = chooseMovieLength;
     }
 

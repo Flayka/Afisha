@@ -6,7 +6,7 @@ import ru.netology.domain.Movie;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MovieManagerTest {
-    MovieManager manager = new MovieManager(10);
+    MovieManager manager = new MovieManager();
     Movie first = new Movie(1, 1, "Jaws1", "horror", true);
     Movie second = new Movie(2, 2, "Jaws2", "horror", true);
     Movie third = new Movie(3, 3, "Jaws3", "horror", false);
@@ -74,7 +74,7 @@ public class MovieManagerTest {
 
     @Test
     public void shouldHigherChooseMovieLength() {
-        MovieManager manager = new MovieManager(6);
+        manager.setChooseMovieLength(6);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -96,7 +96,7 @@ public class MovieManagerTest {
 
     @Test
     public void shouldChooseMovieLengthZero() {
-        MovieManager manager = new MovieManager(0);
+        manager.setChooseMovieLength(0);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -117,8 +117,8 @@ public class MovieManagerTest {
     }
 
     @Test
-    public void shouldChooseMovieLengthZero2() {
-        MovieManager manager = new MovieManager(0);
+    public void shouldChooseMovieLengthZeroShowMovieLengthBelow10() {
+        manager.setChooseMovieLength(0);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -126,6 +126,17 @@ public class MovieManagerTest {
 
         Movie[] actual = manager.getAll();
         Movie[] expected = new Movie[]{fourth, third, second, first};
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldChooseMovieLengthLikeLength() {
+        manager.setChooseMovieLength(1);
+        manager.add(first);
+
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{first};
 
         assertArrayEquals(expected, actual);
     }
