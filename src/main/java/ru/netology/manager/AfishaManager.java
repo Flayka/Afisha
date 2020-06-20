@@ -13,6 +13,11 @@ public class AfishaManager {
         this.repository = repository;
     }
 
+    public AfishaManager(AfishaRepository repository, int chooseMovieLength) {
+        this.repository = repository;
+        this.chooseMovieLength = chooseMovieLength;
+    }
+
     public void setChooseMovieLength(int chooseMovieLength) {
         this.chooseMovieLength = chooseMovieLength;
     }

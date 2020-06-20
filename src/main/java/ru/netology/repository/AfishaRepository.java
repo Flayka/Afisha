@@ -18,7 +18,7 @@ public class AfishaRepository {
         return items;
     }
 
-        public void removeById(int id) {
+    public void removeById(int id) {
         int length = items.length - 1;
         Movie[] tmp = new Movie[length];
         int index = 0;
