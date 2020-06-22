@@ -6,7 +6,7 @@ import ru.netology.domain.Movie;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MovieManagerTest {
-    MovieManager manager = new MovieManager(10);
+    MovieManager manager = new MovieManager();
     Movie first = new Movie(1, 1, "Jaws1", "horror", true);
     Movie second = new Movie(2, 2, "Jaws2", "horror", true);
     Movie third = new Movie(3, 3, "Jaws3", "horror", false);
@@ -73,30 +73,8 @@ public class MovieManagerTest {
     }
 
     @Test
-    public void shouldHigherChooseMovieLength() {
-        manager.setChooseMovieLength(6);
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleventh);
-        manager.add(twelfth);
-
-        Movie[] actual = manager.getAll();
-        Movie[] expected = new Movie[]{twelfth, eleventh, tenth, ninth, eighth, seventh};
-
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldChooseMovieLengthZero() {
-        manager.setChooseMovieLength(0);
+    public void shouldChooseMovieLengthZeroShowMovieLengthAbove10() {
+        manager = new MovieManager(0);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -117,8 +95,31 @@ public class MovieManagerTest {
     }
 
     @Test
+    public void shouldUseChooseMovieLength() {
+        manager = new MovieManager(5);
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleventh);
+        manager.add(twelfth);
+
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{twelfth, eleventh, tenth, ninth, eighth};
+
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
     public void shouldChooseMovieLengthZeroShowMovieLengthBelow10() {
-        manager.setChooseMovieLength(0);
+        manager = new MovieManager(0);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -132,7 +133,7 @@ public class MovieManagerTest {
 
     @Test
     public void shouldChooseMovieLengthLikeLength() {
-        manager.setChooseMovieLength(1);
+        manager = new MovieManager(1);
         manager.add(first);
 
         Movie[] actual = manager.getAll();
